@@ -14,7 +14,181 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      eligibility_results: {
+        Row: {
+          created_at: string
+          id: string
+          match_reason: string | null
+          scheme_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          match_reason?: string | null
+          scheme_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          match_reason?: string | null
+          scheme_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "eligibility_results_scheme_id_fkey"
+            columns: ["scheme_id"]
+            isOneToOne: false
+            referencedRelation: "schemes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          age: number | null
+          area_type: string | null
+          created_at: string
+          district: string | null
+          education: string | null
+          email: string | null
+          full_name: string | null
+          gender: string | null
+          id: string
+          income_range: string | null
+          occupation: string | null
+          preferences: Json
+          state: string | null
+          updated_at: string
+        }
+        Insert: {
+          age?: number | null
+          area_type?: string | null
+          created_at?: string
+          district?: string | null
+          education?: string | null
+          email?: string | null
+          full_name?: string | null
+          gender?: string | null
+          id: string
+          income_range?: string | null
+          occupation?: string | null
+          preferences?: Json
+          state?: string | null
+          updated_at?: string
+        }
+        Update: {
+          age?: number | null
+          area_type?: string | null
+          created_at?: string
+          district?: string | null
+          education?: string | null
+          email?: string | null
+          full_name?: string | null
+          gender?: string | null
+          id?: string
+          income_range?: string | null
+          occupation?: string | null
+          preferences?: Json
+          state?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      saved_schemes: {
+        Row: {
+          id: string
+          saved_at: string
+          scheme_id: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          saved_at?: string
+          scheme_id: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          saved_at?: string
+          scheme_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "saved_schemes_scheme_id_fkey"
+            columns: ["scheme_id"]
+            isOneToOne: false
+            referencedRelation: "schemes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      schemes: {
+        Row: {
+          application_process: string[]
+          application_url: string | null
+          benefits: string[]
+          category: string
+          created_at: string
+          deadline: string | null
+          description: string
+          eligibility_criteria: string[]
+          government_level: string
+          id: string
+          last_updated: string
+          official_url: string | null
+          required_documents: string[]
+          scheme_name: string
+          slug: string
+          state: string | null
+          target_users: string[]
+          verification_status: string
+        }
+        Insert: {
+          application_process?: string[]
+          application_url?: string | null
+          benefits?: string[]
+          category: string
+          created_at?: string
+          deadline?: string | null
+          description: string
+          eligibility_criteria?: string[]
+          government_level?: string
+          id?: string
+          last_updated?: string
+          official_url?: string | null
+          required_documents?: string[]
+          scheme_name: string
+          slug: string
+          state?: string | null
+          target_users?: string[]
+          verification_status?: string
+        }
+        Update: {
+          application_process?: string[]
+          application_url?: string | null
+          benefits?: string[]
+          category?: string
+          created_at?: string
+          deadline?: string | null
+          description?: string
+          eligibility_criteria?: string[]
+          government_level?: string
+          id?: string
+          last_updated?: string
+          official_url?: string | null
+          required_documents?: string[]
+          scheme_name?: string
+          slug?: string
+          state?: string | null
+          target_users?: string[]
+          verification_status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
