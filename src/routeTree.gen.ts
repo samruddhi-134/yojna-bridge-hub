@@ -10,33 +10,89 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EligibilityCheckerRouteImport } from './routes/eligibility-checker'
+import { Route as EligibilityResultsRouteImport } from './routes/eligibility-results'
+import { Route as SchemesRouteImport } from './routes/schemes'
+import { Route as SchemeSlugRouteImport } from './routes/scheme.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EligibilityCheckerRoute = EligibilityCheckerRouteImport.update({
+  id: '/eligibility-checker',
+  path: '/eligibility-checker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EligibilityResultsRoute = EligibilityResultsRouteImport.update({
+  id: '/eligibility-results',
+  path: '/eligibility-results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SchemesRoute = SchemesRouteImport.update({
+  id: '/schemes',
+  path: '/schemes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SchemeSlugRoute = SchemeSlugRouteImport.update({
+  id: '/scheme/$slug',
+  path: '/scheme/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/eligibility-checker': typeof EligibilityCheckerRoute
+  '/eligibility-results': typeof EligibilityResultsRoute
+  '/schemes': typeof SchemesRoute
+  '/scheme/$slug': typeof SchemeSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/eligibility-checker': typeof EligibilityCheckerRoute
+  '/eligibility-results': typeof EligibilityResultsRoute
+  '/schemes': typeof SchemesRoute
+  '/scheme/$slug': typeof SchemeSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/eligibility-checker': typeof EligibilityCheckerRoute
+  '/eligibility-results': typeof EligibilityResultsRoute
+  '/schemes': typeof SchemesRoute
+  '/scheme/$slug': typeof SchemeSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/eligibility-checker'
+    | '/eligibility-results'
+    | '/schemes'
+    | '/scheme/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/eligibility-checker'
+    | '/eligibility-results'
+    | '/schemes'
+    | '/scheme/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/eligibility-checker'
+    | '/eligibility-results'
+    | '/schemes'
+    | '/scheme/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EligibilityCheckerRoute: typeof EligibilityCheckerRoute
+  EligibilityResultsRoute: typeof EligibilityResultsRoute
+  SchemesRoute: typeof SchemesRoute
+  SchemeSlugRoute: typeof SchemeSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +104,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/eligibility-checker': {
+      id: '/eligibility-checker'
+      path: '/eligibility-checker'
+      fullPath: '/eligibility-checker'
+      preLoaderRoute: typeof EligibilityCheckerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eligibility-results': {
+      id: '/eligibility-results'
+      path: '/eligibility-results'
+      fullPath: '/eligibility-results'
+      preLoaderRoute: typeof EligibilityResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/schemes': {
+      id: '/schemes'
+      path: '/schemes'
+      fullPath: '/schemes'
+      preLoaderRoute: typeof SchemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scheme/$slug': {
+      id: '/scheme/$slug'
+      path: '/scheme/$slug'
+      fullPath: '/scheme/$slug'
+      preLoaderRoute: typeof SchemeSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EligibilityCheckerRoute: EligibilityCheckerRoute,
+  EligibilityResultsRoute: EligibilityResultsRoute,
+  SchemesRoute: SchemesRoute,
+  SchemeSlugRoute: SchemeSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
