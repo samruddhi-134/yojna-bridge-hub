@@ -12,8 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EligibilityCheckerRouteImport } from './routes/eligibility-checker'
 import { Route as EligibilityResultsRouteImport } from './routes/eligibility-results'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SchemesRouteImport } from './routes/schemes'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as CategoriesIndexRouteImport } from './routes/categories.index'
 import { Route as CategoriesCategoryRouteImport } from './routes/categories.$category'
 import { Route as SchemeSlugRouteImport } from './routes/scheme.$slug'
@@ -33,14 +37,34 @@ const EligibilityResultsRoute = EligibilityResultsRouteImport.update({
   path: '/eligibility-results',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HowItWorksRoute = HowItWorksRouteImport.update({
   id: '/how-it-works',
   path: '/how-it-works',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SchemesRoute = SchemesRouteImport.update({
   id: '/schemes',
   path: '/schemes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategoriesIndexRoute = CategoriesIndexRouteImport.update({
@@ -63,8 +87,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/eligibility-checker': typeof EligibilityCheckerRoute
   '/eligibility-results': typeof EligibilityResultsRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/schemes': typeof SchemesRoute
+  '/signup': typeof SignupRoute
   '/categories/$category': typeof CategoriesCategoryRoute
   '/scheme/$slug': typeof SchemeSlugRoute
   '/categories/': typeof CategoriesIndexRoute
@@ -73,8 +101,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/eligibility-checker': typeof EligibilityCheckerRoute
   '/eligibility-results': typeof EligibilityResultsRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/schemes': typeof SchemesRoute
+  '/signup': typeof SignupRoute
   '/categories/$category': typeof CategoriesCategoryRoute
   '/scheme/$slug': typeof SchemeSlugRoute
   '/categories': typeof CategoriesIndexRoute
@@ -84,8 +116,12 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/eligibility-checker': typeof EligibilityCheckerRoute
   '/eligibility-results': typeof EligibilityResultsRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/schemes': typeof SchemesRoute
+  '/signup': typeof SignupRoute
   '/categories/$category': typeof CategoriesCategoryRoute
   '/scheme/$slug': typeof SchemeSlugRoute
   '/categories/': typeof CategoriesIndexRoute
@@ -96,8 +132,12 @@ export interface FileRouteTypes {
     | '/'
     | '/eligibility-checker'
     | '/eligibility-results'
+    | '/forgot-password'
     | '/how-it-works'
+    | '/login'
+    | '/reset-password'
     | '/schemes'
+    | '/signup'
     | '/categories/$category'
     | '/scheme/$slug'
     | '/categories/'
@@ -106,8 +146,12 @@ export interface FileRouteTypes {
     | '/'
     | '/eligibility-checker'
     | '/eligibility-results'
+    | '/forgot-password'
     | '/how-it-works'
+    | '/login'
+    | '/reset-password'
     | '/schemes'
+    | '/signup'
     | '/categories/$category'
     | '/scheme/$slug'
     | '/categories'
@@ -116,8 +160,12 @@ export interface FileRouteTypes {
     | '/'
     | '/eligibility-checker'
     | '/eligibility-results'
+    | '/forgot-password'
     | '/how-it-works'
+    | '/login'
+    | '/reset-password'
     | '/schemes'
+    | '/signup'
     | '/categories/$category'
     | '/scheme/$slug'
     | '/categories/'
@@ -127,8 +175,12 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EligibilityCheckerRoute: typeof EligibilityCheckerRoute
   EligibilityResultsRoute: typeof EligibilityResultsRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
   HowItWorksRoute: typeof HowItWorksRoute
+  LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SchemesRoute: typeof SchemesRoute
+  SignupRoute: typeof SignupRoute
   CategoriesCategoryRoute: typeof CategoriesCategoryRoute
   SchemeSlugRoute: typeof SchemeSlugRoute
   CategoriesIndexRoute: typeof CategoriesIndexRoute
@@ -157,6 +209,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EligibilityResultsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/how-it-works': {
       id: '/how-it-works'
       path: '/how-it-works'
@@ -164,11 +223,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HowItWorksRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/schemes': {
       id: '/schemes'
       path: '/schemes'
       fullPath: '/schemes'
       preLoaderRoute: typeof SchemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/categories/': {
@@ -199,8 +279,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EligibilityCheckerRoute: EligibilityCheckerRoute,
   EligibilityResultsRoute: EligibilityResultsRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
   HowItWorksRoute: HowItWorksRoute,
+  LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SchemesRoute: SchemesRoute,
+  SignupRoute: SignupRoute,
   CategoriesCategoryRoute: CategoriesCategoryRoute,
   SchemeSlugRoute: SchemeSlugRoute,
   CategoriesIndexRoute: CategoriesIndexRoute,
