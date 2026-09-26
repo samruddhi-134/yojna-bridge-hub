@@ -12,7 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EligibilityCheckerRouteImport } from './routes/eligibility-checker'
 import { Route as EligibilityResultsRouteImport } from './routes/eligibility-results'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as SchemesRouteImport } from './routes/schemes'
+import { Route as CategoriesIndexRouteImport } from './routes/categories.index'
+import { Route as CategoriesCategoryRouteImport } from './routes/categories.$category'
 import { Route as SchemeSlugRouteImport } from './routes/scheme.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -30,9 +33,24 @@ const EligibilityResultsRoute = EligibilityResultsRouteImport.update({
   path: '/eligibility-results',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SchemesRoute = SchemesRouteImport.update({
   id: '/schemes',
   path: '/schemes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesIndexRoute = CategoriesIndexRouteImport.update({
+  id: '/categories/',
+  path: '/categories/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesCategoryRoute = CategoriesCategoryRouteImport.update({
+  id: '/categories/$category',
+  path: '/categories/$category',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SchemeSlugRoute = SchemeSlugRouteImport.update({
@@ -45,23 +63,32 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/eligibility-checker': typeof EligibilityCheckerRoute
   '/eligibility-results': typeof EligibilityResultsRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/schemes': typeof SchemesRoute
+  '/categories/$category': typeof CategoriesCategoryRoute
   '/scheme/$slug': typeof SchemeSlugRoute
+  '/categories/': typeof CategoriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/eligibility-checker': typeof EligibilityCheckerRoute
   '/eligibility-results': typeof EligibilityResultsRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/schemes': typeof SchemesRoute
+  '/categories/$category': typeof CategoriesCategoryRoute
   '/scheme/$slug': typeof SchemeSlugRoute
+  '/categories': typeof CategoriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/eligibility-checker': typeof EligibilityCheckerRoute
   '/eligibility-results': typeof EligibilityResultsRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/schemes': typeof SchemesRoute
+  '/categories/$category': typeof CategoriesCategoryRoute
   '/scheme/$slug': typeof SchemeSlugRoute
+  '/categories/': typeof CategoriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -69,30 +96,42 @@ export interface FileRouteTypes {
     | '/'
     | '/eligibility-checker'
     | '/eligibility-results'
+    | '/how-it-works'
     | '/schemes'
+    | '/categories/$category'
     | '/scheme/$slug'
+    | '/categories/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/eligibility-checker'
     | '/eligibility-results'
+    | '/how-it-works'
     | '/schemes'
+    | '/categories/$category'
     | '/scheme/$slug'
+    | '/categories'
   id:
     | '__root__'
     | '/'
     | '/eligibility-checker'
     | '/eligibility-results'
+    | '/how-it-works'
     | '/schemes'
+    | '/categories/$category'
     | '/scheme/$slug'
+    | '/categories/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EligibilityCheckerRoute: typeof EligibilityCheckerRoute
   EligibilityResultsRoute: typeof EligibilityResultsRoute
+  HowItWorksRoute: typeof HowItWorksRoute
   SchemesRoute: typeof SchemesRoute
+  CategoriesCategoryRoute: typeof CategoriesCategoryRoute
   SchemeSlugRoute: typeof SchemeSlugRoute
+  CategoriesIndexRoute: typeof CategoriesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -118,11 +157,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EligibilityResultsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/schemes': {
       id: '/schemes'
       path: '/schemes'
       fullPath: '/schemes'
       preLoaderRoute: typeof SchemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories/': {
+      id: '/categories/'
+      path: '/categories'
+      fullPath: '/categories/'
+      preLoaderRoute: typeof CategoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories/$category': {
+      id: '/categories/$category'
+      path: '/categories/$category'
+      fullPath: '/categories/$category'
+      preLoaderRoute: typeof CategoriesCategoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/scheme/$slug': {
@@ -139,8 +199,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EligibilityCheckerRoute: EligibilityCheckerRoute,
   EligibilityResultsRoute: EligibilityResultsRoute,
+  HowItWorksRoute: HowItWorksRoute,
   SchemesRoute: SchemesRoute,
+  CategoriesCategoryRoute: CategoriesCategoryRoute,
   SchemeSlugRoute: SchemeSlugRoute,
+  CategoriesIndexRoute: CategoriesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
