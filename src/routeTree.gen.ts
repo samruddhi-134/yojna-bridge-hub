@@ -10,21 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as EligibilityCheckerRouteImport } from './routes/eligibility-checker'
 import { Route as EligibilityResultsRouteImport } from './routes/eligibility-results'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SchemesRouteImport } from './routes/schemes'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CategoriesIndexRouteImport } from './routes/categories.index'
 import { Route as CategoriesCategoryRouteImport } from './routes/categories.$category'
+import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
+import { Route as ResourcesHowToApplyForGovernmentSchemesRouteImport } from './routes/resources.how-to-apply-for-government-schemes'
 import { Route as SchemeSlugRouteImport } from './routes/scheme.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisclaimerRoute = DisclaimerRouteImport.update({
+  id: '/disclaimer',
+  path: '/disclaimer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EligibilityCheckerRoute = EligibilityCheckerRouteImport.update({
@@ -52,6 +74,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
@@ -67,6 +94,11 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriesIndexRoute = CategoriesIndexRouteImport.update({
   id: '/categories/',
   path: '/categories/',
@@ -77,6 +109,17 @@ const CategoriesCategoryRoute = CategoriesCategoryRouteImport.update({
   path: '/categories/$category',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/resources/',
+  path: '/resources/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesHowToApplyForGovernmentSchemesRoute =
+  ResourcesHowToApplyForGovernmentSchemesRouteImport.update({
+    id: '/resources/how-to-apply-for-government-schemes',
+    path: '/resources/how-to-apply-for-government-schemes',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SchemeSlugRoute = SchemeSlugRouteImport.update({
   id: '/scheme/$slug',
   path: '/scheme/$slug',
@@ -85,105 +128,154 @@ const SchemeSlugRoute = SchemeSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/dashboard': typeof DashboardRoute
+  '/disclaimer': typeof DisclaimerRoute
   '/eligibility-checker': typeof EligibilityCheckerRoute
   '/eligibility-results': typeof EligibilityResultsRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
+  '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/schemes': typeof SchemesRoute
   '/signup': typeof SignupRoute
+  '/terms': typeof TermsRoute
   '/categories/$category': typeof CategoriesCategoryRoute
+  '/resources/how-to-apply-for-government-schemes': typeof ResourcesHowToApplyForGovernmentSchemesRoute
   '/scheme/$slug': typeof SchemeSlugRoute
   '/categories/': typeof CategoriesIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/dashboard': typeof DashboardRoute
+  '/disclaimer': typeof DisclaimerRoute
   '/eligibility-checker': typeof EligibilityCheckerRoute
   '/eligibility-results': typeof EligibilityResultsRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
+  '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/schemes': typeof SchemesRoute
   '/signup': typeof SignupRoute
+  '/terms': typeof TermsRoute
   '/categories/$category': typeof CategoriesCategoryRoute
+  '/resources/how-to-apply-for-government-schemes': typeof ResourcesHowToApplyForGovernmentSchemesRoute
   '/scheme/$slug': typeof SchemeSlugRoute
   '/categories': typeof CategoriesIndexRoute
+  '/resources': typeof ResourcesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/dashboard': typeof DashboardRoute
+  '/disclaimer': typeof DisclaimerRoute
   '/eligibility-checker': typeof EligibilityCheckerRoute
   '/eligibility-results': typeof EligibilityResultsRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
+  '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/schemes': typeof SchemesRoute
   '/signup': typeof SignupRoute
+  '/terms': typeof TermsRoute
   '/categories/$category': typeof CategoriesCategoryRoute
+  '/resources/how-to-apply-for-government-schemes': typeof ResourcesHowToApplyForGovernmentSchemesRoute
   '/scheme/$slug': typeof SchemeSlugRoute
   '/categories/': typeof CategoriesIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
+    | '/dashboard'
+    | '/disclaimer'
     | '/eligibility-checker'
     | '/eligibility-results'
     | '/forgot-password'
     | '/how-it-works'
     | '/login'
+    | '/privacy'
     | '/reset-password'
     | '/schemes'
     | '/signup'
+    | '/terms'
     | '/categories/$category'
+    | '/resources/how-to-apply-for-government-schemes'
     | '/scheme/$slug'
     | '/categories/'
+    | '/resources/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/dashboard'
+    | '/disclaimer'
     | '/eligibility-checker'
     | '/eligibility-results'
     | '/forgot-password'
     | '/how-it-works'
     | '/login'
+    | '/privacy'
     | '/reset-password'
     | '/schemes'
     | '/signup'
+    | '/terms'
     | '/categories/$category'
+    | '/resources/how-to-apply-for-government-schemes'
     | '/scheme/$slug'
     | '/categories'
+    | '/resources'
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/dashboard'
+    | '/disclaimer'
     | '/eligibility-checker'
     | '/eligibility-results'
     | '/forgot-password'
     | '/how-it-works'
     | '/login'
+    | '/privacy'
     | '/reset-password'
     | '/schemes'
     | '/signup'
+    | '/terms'
     | '/categories/$category'
+    | '/resources/how-to-apply-for-government-schemes'
     | '/scheme/$slug'
     | '/categories/'
+    | '/resources/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  DashboardRoute: typeof DashboardRoute
+  DisclaimerRoute: typeof DisclaimerRoute
   EligibilityCheckerRoute: typeof EligibilityCheckerRoute
   EligibilityResultsRoute: typeof EligibilityResultsRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   HowItWorksRoute: typeof HowItWorksRoute
   LoginRoute: typeof LoginRoute
+  PrivacyRoute: typeof PrivacyRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SchemesRoute: typeof SchemesRoute
   SignupRoute: typeof SignupRoute
+  TermsRoute: typeof TermsRoute
   CategoriesCategoryRoute: typeof CategoriesCategoryRoute
+  ResourcesHowToApplyForGovernmentSchemesRoute: typeof ResourcesHowToApplyForGovernmentSchemesRoute
   SchemeSlugRoute: typeof SchemeSlugRoute
   CategoriesIndexRoute: typeof CategoriesIndexRoute
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -193,6 +285,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disclaimer': {
+      id: '/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof DisclaimerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/eligibility-checker': {
@@ -230,6 +343,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reset-password': {
       id: '/reset-password'
       path: '/reset-password'
@@ -251,6 +371,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categories/': {
       id: '/categories/'
       path: '/categories'
@@ -265,6 +392,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesCategoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/': {
+      id: '/resources/'
+      path: '/resources'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/how-to-apply-for-government-schemes': {
+      id: '/resources/how-to-apply-for-government-schemes'
+      path: '/resources/how-to-apply-for-government-schemes'
+      fullPath: '/resources/how-to-apply-for-government-schemes'
+      preLoaderRoute: typeof ResourcesHowToApplyForGovernmentSchemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scheme/$slug': {
       id: '/scheme/$slug'
       path: '/scheme/$slug'
@@ -277,17 +418,25 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  DashboardRoute: DashboardRoute,
+  DisclaimerRoute: DisclaimerRoute,
   EligibilityCheckerRoute: EligibilityCheckerRoute,
   EligibilityResultsRoute: EligibilityResultsRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   HowItWorksRoute: HowItWorksRoute,
   LoginRoute: LoginRoute,
+  PrivacyRoute: PrivacyRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SchemesRoute: SchemesRoute,
   SignupRoute: SignupRoute,
+  TermsRoute: TermsRoute,
   CategoriesCategoryRoute: CategoriesCategoryRoute,
+  ResourcesHowToApplyForGovernmentSchemesRoute:
+    ResourcesHowToApplyForGovernmentSchemesRoute,
   SchemeSlugRoute: SchemeSlugRoute,
   CategoriesIndexRoute: CategoriesIndexRoute,
+  ResourcesIndexRoute: ResourcesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
