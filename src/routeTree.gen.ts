@@ -22,6 +22,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SchemesRouteImport } from './routes/schemes'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CategoriesIndexRouteImport } from './routes/categories.index'
 import { Route as CategoriesCategoryRouteImport } from './routes/categories.$category'
@@ -94,6 +95,11 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -140,6 +146,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/schemes': typeof SchemesRoute
   '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/categories/$category': typeof CategoriesCategoryRoute
   '/resources/how-to-apply-for-government-schemes': typeof ResourcesHowToApplyForGovernmentSchemesRoute
@@ -161,6 +168,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/schemes': typeof SchemesRoute
   '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/categories/$category': typeof CategoriesCategoryRoute
   '/resources/how-to-apply-for-government-schemes': typeof ResourcesHowToApplyForGovernmentSchemesRoute
@@ -183,6 +191,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/schemes': typeof SchemesRoute
   '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/categories/$category': typeof CategoriesCategoryRoute
   '/resources/how-to-apply-for-government-schemes': typeof ResourcesHowToApplyForGovernmentSchemesRoute
@@ -206,6 +215,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/schemes'
     | '/signup'
+    | '/sitemap.xml'
     | '/terms'
     | '/categories/$category'
     | '/resources/how-to-apply-for-government-schemes'
@@ -227,6 +237,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/schemes'
     | '/signup'
+    | '/sitemap.xml'
     | '/terms'
     | '/categories/$category'
     | '/resources/how-to-apply-for-government-schemes'
@@ -248,6 +259,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/schemes'
     | '/signup'
+    | '/sitemap.xml'
     | '/terms'
     | '/categories/$category'
     | '/resources/how-to-apply-for-government-schemes'
@@ -270,6 +282,7 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   SchemesRoute: typeof SchemesRoute
   SignupRoute: typeof SignupRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   CategoriesCategoryRoute: typeof CategoriesCategoryRoute
   ResourcesHowToApplyForGovernmentSchemesRoute: typeof ResourcesHowToApplyForGovernmentSchemesRoute
@@ -371,6 +384,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -430,6 +450,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   SchemesRoute: SchemesRoute,
   SignupRoute: SignupRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   CategoriesCategoryRoute: CategoriesCategoryRoute,
   ResourcesHowToApplyForGovernmentSchemesRoute:

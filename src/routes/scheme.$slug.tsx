@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { trackRecentlyViewed } from "@/lib/recently-viewed";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import {
   Bookmark,
@@ -118,6 +119,7 @@ function SchemeDetail() {
   const { data: savedRows } = useSavedSchemes(user?.id);
   const toggleSave = useToggleSave(user?.id);
   const saved = (savedRows ?? []).some((r) => r.scheme_id === scheme.id);
+  useEffect(() => trackRecentlyViewed(scheme.slug), [scheme.slug]);
 
   function handleSave() {
     if (!user) return setAuthOpen(true);
