@@ -6,6 +6,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useSavedSchemes, useToggleSave } from "@/hooks/use-saved-schemes";
 import { listSchemes, type Scheme } from "@/lib/schemes.functions";
 import { loadAnswers, matchSchemes } from "@/lib/eligibility";
+import { getRecentlyViewed } from "@/lib/recently-viewed";
 import { SchemeCard } from "@/components/SchemeCard";
 import { EmptyState, LoadingState } from "@/components/states";
 import { Button } from "@/components/ui/button";
@@ -31,7 +32,11 @@ function DashboardPage() {
   const toggle = useToggleSave(user?.id);
   const [answers, setAnswers] = useState<ReturnType<typeof loadAnswers>>(null);
 
-  useEffect(() => setAnswers(loadAnswers()), []);
+  const [recentSlugs, setRecentSlugs] = useState<string[]>([]);
+  useEffect(() => {
+    setAnswers(loadAnswers());
+    setRecentSlugs(getRecentlyViewed());
+  }, []);
   useEffect(() => {
     if (!loading && !user) navigate({ to: "/login" });
   }, [loading, user, navigate]);
@@ -41,6 +46,7 @@ function DashboardPage() {
     [answers, schemesQ.data],
   );
   const saved = (savedQ.data ?? []).map((s) => s.schemes as Scheme | null).filter(Boolean) as Scheme[];
+  const recent = recentSlugs.map((slug) => schemesQ.data?.find((s) => s.slug === slug)).filter(Boolean) as Scheme[];
   const savedIds = new Set(saved.map((s) => s.id));
   const today = new Date().toISOString().slice(0, 10);
   const deadlines = saved.filter((s) => s.deadline && s.deadline >= today).sort((a, b) => a.deadline!.localeCompare(b.deadline!));
@@ -93,7 +99,11 @@ function DashboardPage() {
 
       <section>
         <h2 className="mb-5 text-xl font-bold text-navy">Recently Viewed</h2>
+        {recent.length ? (
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{recent.map(card)}</div>
+        ) : (
         <EmptyState title="Nothing viewed yet" description="Schemes you open will appear here." action={<Button asChild variant="outline"><Link to="/schemes">Explore Schemes</Link></Button>} />
+        )}
       </section>
 
       <section id="saved">
